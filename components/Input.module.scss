@@ -1,0 +1,45 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.input {
+  @include input-base;
+  width: 100%;
+
+  &.error {
+    border-color: $danger-color;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($danger-color, 0.1);
+    }
+  }
+
+  &.success {
+    border-color: $success-color;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($success-color, 0.1);
+    }
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.label {
+  font-weight: $font-medium;
+  color: $text-primary;
+  font-size: $font-sm;
+}
+
+.helperText {
+  font-size: $font-xs;
+  color: $text-tertiary;
+}
+
+.errorText {
+  font-size: $font-xs;
+  color: $danger-color;
+}

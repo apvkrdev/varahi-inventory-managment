@@ -1,0 +1,61 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.tableWrapper {
+  overflow-x: auto;
+  @include custom-scrollbar();
+
+  border-radius: $radius-lg;
+  border: $border-width solid $border-color;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $white;
+
+  thead {
+    background-color: $gray-100;
+    border-bottom: 2px solid $border-color;
+
+    th {
+      padding: $spacing-md $spacing-lg;
+      text-align: left;
+      font-weight: $font-semibold;
+      color: $text-primary;
+      white-space: nowrap;
+      font-size: $font-sm;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: $border-width solid $border-color;
+      @include transition(background-color);
+
+      &:hover {
+        background-color: $gray-50;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      td {
+        padding: $spacing-md $spacing-lg;
+        font-size: $font-sm;
+        color: $text-primary;
+      }
+    }
+  }
+}
+
+.striped {
+  tbody tr:nth-child(odd) {
+    background-color: $gray-50;
+
+    &:hover {
+      background-color: $gray-100;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-modal-backdrop;
+  animation: fadeIn 200ms ease-in-out;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.modal {
+  background-color: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-xl;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: $z-modal;
+  animation: slideInUp 200ms ease-in-out;
+  @include custom-scrollbar();
+}
+
+.modalHeader {
+  @include flex-between;
+  padding: $spacing-lg $spacing-lg;
+  border-bottom: $border-width solid $border-color;
+
+  h2 {
+    margin: 0;
+    font-size: $font-xl;
+  }
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: $font-xl;
+  cursor: pointer;
+  color: $text-secondary;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  @include flex-center;
+  @include transition(color);
+
+  &:hover {
+    color: $text-primary;
+  }
+}
+
+.modalBody {
+  padding: $spacing-lg;
+}
+
+.modalFooter {
+  @include flex-between;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  border-top: $border-width solid $border-color;
+}

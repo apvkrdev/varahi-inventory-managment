@@ -1,0 +1,178 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $bg-secondary;
+  color: $text-primary;
+  font-size: $font-base;
+  line-height: $line-height-normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.625;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  @include transition(color);
+
+  &:hover {
+    color: $primary-dark;
+  }
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+input:autofill,
+input:autofill:hover,
+input:autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px $white inset !important;
+  -webkit-text-fill-color: $text-primary !important;
+}
+
+code {
+  background-color: $gray-100;
+  border-radius: $radius-sm;
+  padding: $spacing-xs $spacing-sm;
+  font-family: 'Courier New', monospace;
+  font-size: $font-sm;
+  color: $primary-color;
+}
+
+pre {
+  background-color: $gray-900;
+  color: $white;
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  overflow-x: auto;
+  @include custom-scrollbar(6px, $gray-600, $gray-800);
+
+  code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: $gray-100;
+  padding: $spacing-md;
+  text-align: left;
+  font-weight: $font-semibold;
+  color: $text-primary;
+  border-bottom: $border-width solid $border-color;
+}
+
+td {
+  padding: $spacing-md;
+  border-bottom: $border-width solid $border-color;
+}
+
+tbody tr:hover {
+  background-color: $gray-50;
+}
+
+select {
+  @include input-base;
+  cursor: pointer;
+}
+
+textarea {
+  @include input-base;
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Chrome, Safari and Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+@include respond-to('md') {
+  h1 {
+    font-size: $font-3xl;
+  }
+
+  h2 {
+    font-size: $font-2xl;
+  }
+
+  h3 {
+    font-size: $font-xl;
+  }
+}

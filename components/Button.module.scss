@@ -1,0 +1,58 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.button {
+  @include btn-base;
+
+  &.primary {
+    @include btn-primary;
+  }
+
+  &.secondary {
+    @include btn-secondary;
+  }
+
+  &.danger {
+    @include btn-danger;
+  }
+
+  &.small {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-xs;
+  }
+
+  &.large {
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-base;
+  }
+
+  &.fullWidth {
+    width: 100%;
+  }
+
+  &.loading {
+    position: relative;
+    color: transparent;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      top: 50%;
+      left: 50%;
+      margin-left: -8px;
+      margin-top: -8px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: $white;
+      animation: spin 0.6s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

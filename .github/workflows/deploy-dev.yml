@@ -1,0 +1,62 @@
+name: Deploy to Dev Environment
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Build Next.js
+        run: npm run build
+        env:
+          NEXTAUTH_URL: ${{ secrets.DEV_NEXTAUTH_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.DEV_NEXTAUTH_SECRET }}
+          MONGODB_URI: ${{ secrets.DEV_MONGODB_URI }}
+
+      - name: Deploy to Vercel (Dev)
+        uses: vercel/action@master
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DEV }}
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+          environment: preview
+        env:
+          NEXTAUTH_URL: ${{ secrets.DEV_NEXTAUTH_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.DEV_NEXTAUTH_SECRET }}
+          MONGODB_URI: ${{ secrets.DEV_MONGODB_URI }}
+
+      - name: Deploy status
+        if: success()
+        run: |
+          echo "✅ Deployment to dev environment successful!"
+          echo "Dev URL will be available shortly"
+
+      - name: Deployment failed
+        if: failure()
+        run: |
+          echo "❌ Deployment failed. Check logs above for details."
+          exit 1

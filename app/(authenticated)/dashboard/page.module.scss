@@ -1,0 +1,132 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.container {
+  display: grid;
+  gap: $spacing-lg;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $spacing-lg;
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.statCard {
+  background-color: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+}
+
+.statLabel {
+  font-size: $font-sm;
+  color: $text-secondary;
+  font-weight: $font-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statValue {
+  font-size: $font-2xl;
+  font-weight: $font-bold;
+  color: $primary-color;
+}
+
+.statUnit {
+  font-size: $font-sm;
+  color: $text-tertiary;
+  margin-left: $spacing-xs;
+}
+
+.sectionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-lg;
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.section {
+  background-color: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+}
+
+.sectionHeader {
+  padding: $spacing-lg;
+  border-bottom: $border-width solid $border-color;
+  background-color: $gray-50;
+
+  h3 {
+    margin: 0;
+    font-size: $font-lg;
+    color: $text-primary;
+  }
+}
+
+.sectionBody {
+  flex: 1;
+  padding: $spacing-lg;
+  overflow-y: auto;
+  @include custom-scrollbar();
+
+  max-height: 400px;
+}
+
+.emptyState {
+  text-align: center;
+  padding: $spacing-2xl $spacing-lg;
+  color: $text-tertiary;
+
+  p {
+    margin: 0;
+  }
+}
+
+.itemRow {
+  padding: $spacing-md 0;
+  border-bottom: $border-width solid $border-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: $font-sm;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.itemLabel {
+  color: $text-secondary;
+}
+
+.itemValue {
+  font-weight: $font-semibold;
+  color: $text-primary;
+}
+
+.itemAmount {
+  color: $primary-color;
+  font-weight: $font-bold;
+}

@@ -1,0 +1,110 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.container {
+  min-height: 100vh;
+  @include flex-center;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-dark 100%);
+  padding: $spacing-md;
+}
+
+.card {
+  background-color: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-xl;
+  padding: $spacing-2xl;
+  width: 100%;
+  max-width: 400px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-2xl;
+
+  h1 {
+    font-size: $font-2xl;
+    margin-bottom: $spacing-sm;
+    color: $text-primary;
+  }
+
+  p {
+    color: $text-secondary;
+    margin: 0;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.label {
+  font-weight: $font-medium;
+  color: $text-primary;
+  font-size: $font-sm;
+}
+
+.input {
+  @include input-base;
+  width: 100%;
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+}
+
+.button {
+  @include btn-primary;
+  width: 100%;
+  padding: $spacing-md;
+  font-size: $font-base;
+  font-weight: $font-medium;
+}
+
+.footer {
+  text-align: center;
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: $border-width solid $border-color;
+
+  p {
+    color: $text-secondary;
+    margin: 0;
+  }
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: $font-semibold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.error {
+  background-color: rgba($danger-color, 0.1);
+  color: $danger-color;
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  font-size: $font-sm;
+  border-left: 4px solid $danger-color;
+}
+
+.success {
+  background-color: rgba($success-color, 0.1);
+  color: $success-color;
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  font-size: $font-sm;
+  border-left: 4px solid $success-color;
+}

@@ -1,0 +1,16 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.card {
+  @include card-base;
+  padding: $spacing-lg;
+
+  &.bordered {
+    box-shadow: $shadow-none;
+    border: $border-width solid $border-color;
+  }
+
+  &.elevated {
+    box-shadow: $shadow-lg;
+  }
+}

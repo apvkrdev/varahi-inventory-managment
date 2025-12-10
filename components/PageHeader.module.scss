@@ -1,0 +1,33 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.header {
+  @include flex-between;
+  padding: $spacing-lg $spacing-2xl;
+  border-bottom: $border-width solid $border-color;
+  background-color: $white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  h1 {
+    margin: 0;
+    font-size: $font-2xl;
+    color: $text-primary;
+  }
+}
+
+.actions {
+  @include flex-between;
+  gap: $spacing-md;
+}
+
+@include respond-to('md') {
+  .header {
+    padding: $spacing-lg;
+
+    h1 {
+      font-size: $font-xl;
+    }
+  }
+}

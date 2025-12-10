@@ -1,0 +1,220 @@
+@import '@/styles/variables.scss';
+
+// Responsive breakpoint mixins
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == '2xl' {
+    @media (min-width: $breakpoint-2xl) {
+      @content;
+    }
+  }
+}
+
+// Flex utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Text utilities
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-line-clamp($lines: 1) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Transition
+@mixin transition($properties: all) {
+  transition: $properties $transition-base;
+}
+
+// Focus states
+@mixin focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba($primary-color, 0.1), 0 0 0 2px $primary-color;
+}
+
+// Button styles
+@mixin btn-base {
+  @include flex-center;
+  padding: $spacing-sm $spacing-md;
+  border: none;
+  border-radius: $radius-md;
+  font-size: $font-sm;
+  font-weight: $font-medium;
+  cursor: pointer;
+  @include transition(all);
+
+  &:focus {
+    @include focus-ring;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin btn-primary {
+  @include btn-base;
+  background-color: $primary-color;
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-dark;
+  }
+
+  &:active:not(:disabled) {
+    background-color: $primary-dark;
+  }
+}
+
+@mixin btn-secondary {
+  @include btn-base;
+  background-color: $gray-200;
+  color: $text-primary;
+
+  &:hover:not(:disabled) {
+    background-color: $gray-300;
+  }
+}
+
+@mixin btn-danger {
+  @include btn-base;
+  background-color: $danger-color;
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background-color: $error-color;
+  }
+}
+
+// Input styles
+@mixin input-base {
+  padding: $spacing-sm $spacing-md;
+  border: $border-width solid $border-color;
+  border-radius: $radius-md;
+  font-size: $font-sm;
+  background-color: $white;
+  @include transition(all);
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  &:disabled {
+    background-color: $gray-100;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: $text-tertiary;
+  }
+}
+
+// Card styles
+@mixin card-base {
+  background-color: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+  @include transition(box-shadow);
+
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+}
+
+// Scrollbar styling
+@mixin custom-scrollbar($width: 8px, $thumb-color: $gray-300, $track-color: $gray-100) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $radius-full;
+
+    &:hover {
+      background: $gray-400;
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Utility functions
+@function rem($px) {
+  @return ($px / 16px) * 1rem;
+}

@@ -1,0 +1,98 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.header {
+  @include flex-between;
+  margin-bottom: $spacing-lg;
+
+  h1 {
+    margin: 0;
+    font-size: $font-2xl;
+  }
+}
+
+.addButton {
+  @include btn-primary;
+  padding: $spacing-sm $spacing-lg;
+}
+
+.card {
+  background-color: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+  padding: $spacing-lg;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+
+  p {
+    margin: 0;
+    font-weight: $font-semibold;
+    color: $text-primary;
+  }
+}
+
+.label {
+  font-weight: $font-medium;
+  font-size: $font-sm;
+  color: $text-primary;
+}
+
+.input {
+  @include input-base;
+  width: 100%;
+}
+
+.formActions {
+  display: flex;
+  gap: $spacing-md;
+
+  button {
+    @include btn-primary;
+    padding: $spacing-sm $spacing-lg;
+  }
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: $radius-lg;
+  border: $border-width solid $border-color;
+}
+
+.loadingState {
+  text-align: center;
+  padding: $spacing-2xl;
+  color: $text-tertiary;
+}
+
+.errorState {
+  background-color: rgba($danger-color, 0.1);
+  color: $danger-color;
+  padding: $spacing-lg;
+  border-radius: $radius-md;
+  border-left: 4px solid $danger-color;
+}
+
+.successMessage {
+  background-color: rgba($success-color, 0.1);
+  color: $success-color;
+  padding: $spacing-lg;
+  border-radius: $radius-md;
+  border-left: 4px solid $success-color;
+}

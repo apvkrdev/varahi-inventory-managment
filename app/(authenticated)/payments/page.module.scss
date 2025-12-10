@@ -1,0 +1,109 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.header {
+  @include flex-between;
+  margin-bottom: $spacing-lg;
+
+  h1 {
+    margin: 0;
+    font-size: $font-2xl;
+  }
+}
+
+.card {
+  background-color: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+  padding: $spacing-lg;
+
+  h3 {
+    margin-top: 0;
+    font-size: $font-lg;
+    color: $text-primary;
+  }
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.label {
+  font-weight: $font-medium;
+  font-size: $font-sm;
+  color: $text-primary;
+}
+
+.input {
+  @include input-base;
+  width: 100%;
+
+  &[type='select'] {
+    appearance: none;
+    padding-right: $spacing-xl;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right $spacing-md center;
+    background-size: 20px;
+    padding-right: $spacing-2xl;
+  }
+}
+
+.formActions {
+  display: flex;
+  gap: $spacing-md;
+
+  button {
+    @include btn-primary;
+    padding: $spacing-sm $spacing-lg;
+  }
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: $radius-lg;
+  border: $border-width solid $border-color;
+}
+
+.loadingState {
+  text-align: center;
+  padding: $spacing-2xl;
+  color: $text-tertiary;
+}
+
+.errorState {
+  background-color: rgba($danger-color, 0.1);
+  color: $danger-color;
+  padding: $spacing-lg;
+  border-radius: $radius-md;
+  border-left: 4px solid $danger-color;
+}
+
+.successMessage {
+  background-color: rgba($success-color, 0.1);
+  color: $success-color;
+  padding: $spacing-lg;
+  border-radius: $radius-md;
+  border-left: 4px solid $success-color;
+}
+
+.select {
+  @include input-base;
+  cursor: pointer;
+}
+
