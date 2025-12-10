@@ -80,7 +80,7 @@ export default function PaymentsPage() {
         setPayments(paymentsResult.data);
       }
     } else {
-      setError(result.error);
+      setError(result.error ?? 'Failed to record payment');
     }
     setSubmitting(false);
   }

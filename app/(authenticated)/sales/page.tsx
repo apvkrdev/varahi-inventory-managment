@@ -80,7 +80,7 @@ export default function SalesPage() {
       });
       loadSales();
     } else {
-      setError(result.error);
+      setError(result.error ?? 'Failed to create sale');
     }
     setSubmitting(false);
   }
@@ -96,7 +96,7 @@ export default function SalesPage() {
       setPaymentAmount('');
       loadSales();
     } else {
-      setError(result.error);
+      setError(result.error ?? 'Failed to update payment');
     }
   }
 

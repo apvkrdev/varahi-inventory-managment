@@ -1,17 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db/mongodb';
 import Sale from '@/lib/models/Sale';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../auth/[...nextauth]/route';
-
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     const { paymentReceived } = await req.json();
+    const { id } = await context.params;
 
     if (paymentReceived === undefined) {
       return NextResponse.json(
@@ -23,7 +16,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     await dbConnect();
 
     const sale = await Sale.findByIdAndUpdate(
-      params.id,
+      id,
       {
         paymentReceived: Number(paymentReceived),
       },

@@ -24,8 +24,8 @@ export default function DashboardPage() {
   useEffect(() => {
     async function loadStats() {
       const result = await getDashboardStats();
-      if (result.success) {
-        setStats(result.data);
+      if (result.success && result.data) {
+        setStats(result.data as DashboardStats);
       }
       setLoading(false);
     }
