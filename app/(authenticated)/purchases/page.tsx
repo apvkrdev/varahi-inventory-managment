@@ -15,6 +15,8 @@ interface Purchase {
   quantity: number;
   rate: number;
   amount: number;
+  gst: number;
+  totalAmount: number;
 }
 
 export default function PurchasesPage() {
@@ -35,11 +37,25 @@ export default function PurchasesPage() {
 
   async function loadPurchases() {
     setLoading(true);
-    const result = await getPurchases();
-    if (result.success) {
-      setPurchases(result.data);
-    }
+    try {
+    const response = await fetch('/api/purchases', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      // console.log(data);
+      if (data) {
+        console.log('Login successful:', data);
+        setPurchases(data);
+        setLoading(false);
+      }
+  } catch (error) {
+    console.error('purchease Loading error:', error);
+    setError('An error occurred. Please try again.');
     setLoading(false);
+  }
   }
 
   useEffect(() => {
@@ -56,29 +72,34 @@ export default function PurchasesPage() {
 
     const totalToSend = formData.totalAmount ? Number(formData.totalAmount) : Number(formData.amount);
 
-    const result = await createPurchase({
-      supplier: formData.supplier,
-      date: formData.date,
-      quantity: Number(formData.quantity),
-      rate: Number(formData.rate),
-      amount: totalToSend,
-    });
-
-    if (result.success) {
-      setSuccess('Purchase created successfully!');
-      setFormData({
-        supplier: '',
-        date: new Date().toISOString().split('T')[0],
-        quantity: '',
-        rate: '',
-        amount: '',
-        gst: '',
-        totalAmount: '',
+    try {
+    const response = await fetch('/api/purchases', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          supplier: formData.supplier,
+          date: formData.date,
+          quantity: Number(formData.quantity),
+          rate: Number(formData.rate),
+          amount: totalToSend,
+          gst:  Number(formData.gst),
+          totalAmount: Number(formData.totalAmount),
+        }),
       });
-      loadPurchases();
-    } else {
-      setError(result.error ?? 'Failed to create purchase');
-    }
+      const data = await response.json();
+      console.log(data);
+      if (data) {
+        setSuccess('pruchases order created');
+        loadPurchases();
+        setLoading(false);
+      }
+  } catch (error) {
+    console.error('Login error:', error);
+    setError('An error occurred. Please try again.');
+    setLoading(false);
+  }
     setSubmitting(false);
   }
 
