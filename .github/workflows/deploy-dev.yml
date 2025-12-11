@@ -42,7 +42,7 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DEV }}
-          scope: ${{ secrets.VERCEL_ORG_ID }}
+          scope: ${{ secrets.VERCEL_SCOPE }}
           environment: preview
         env:
           NEXTAUTH_URL: ${{ secrets.DEV_NEXTAUTH_URL }}
