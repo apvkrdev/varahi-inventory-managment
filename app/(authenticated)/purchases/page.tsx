@@ -264,7 +264,7 @@ export default function PurchasesPage() {
         {loading ? (
           <div className={styles.loadingState}>Loading purchases...</div>
         ) : (
-          <div className={styles.tableWrapper}>
+          purchases?.length !== 0 && <div className={styles.tableWrapper}>
             <Table columns={columns} data={purchases} />
           </div>
         )}
